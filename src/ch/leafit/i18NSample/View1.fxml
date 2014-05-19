@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane prefHeight="500.0" prefWidth="500.0"
+	xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8"
+	fx:controller="ch.leafit.i18NSample.Controller">
+	<top>
+		<!-- This label's text will be set by the controller -->
+		<Label fx:id="lblTextByController" />
+	</top>
+	<center>
+		<!-- This label's text will be taken from the bundle automatically -->
+		<Label fx:id="la1" text="%key2" />
+	</center>
+	<bottom>
+		<!-- This label's text will be taken from the bundle automatically -->
+		<Label fx:id="la2" text="%key3" />
+	</bottom>
+</BorderPane>

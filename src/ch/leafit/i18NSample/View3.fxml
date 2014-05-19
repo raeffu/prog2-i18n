@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="aproot" prefHeight="200.0" prefWidth="300.0"
+	styleClass="root2" stylesheets="ch/leafit/i18NSample/css1.css" xmlns="http://javafx.com/javafx/8"
+	xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.leafit.i18NSample.Controller">
+	<children>
+		<Label fx:id="lblTextByController" layoutX="14.0" layoutY="4.0"
+			text="Label" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
+		<HBox layoutX="31.5" layoutY="79.0" prefHeight="35.0" prefWidth="280.0"
+			AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0"
+			AnchorPane.topAnchor="40.0">
+			<children>
+				<Label fx:id="la2" layoutX="10.0" layoutY="79.0" text="%key2">
+					<HBox.margin>
+						<Insets right="20.0" />
+					</HBox.margin>
+				</Label>
+				<Label fx:id="la1" layoutX="122.0" layoutY="100.0" text="%key3" />
+			</children>
+		</HBox>
+		<Label fx:id="laLanguage" layoutX="194.506103515625" layoutY="10.0" />
+	</children>
+</AnchorPane>

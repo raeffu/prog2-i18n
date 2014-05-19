@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="aproot" prefHeight="138.0" prefWidth="200.0"
+	styleClass="root3" stylesheets="ch/leafit/i18NSample/css1.css" xmlns="http://javafx.com/javafx/8"
+	xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.leafit.i18NSample.Controller">
+	<children>
+		<Label fx:id="la1" layoutX="122.0" layoutY="100.0" text="%key3" />
+		<Label fx:id="la2" layoutX="10.0" layoutY="79.0" text="%key2" />
+		<Label fx:id="lblTextByController" layoutX="14.0" layoutY="4.0" text="Label" />
+	</children>
+</AnchorPane>
