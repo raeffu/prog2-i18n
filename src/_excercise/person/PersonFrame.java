@@ -8,6 +8,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -27,6 +29,10 @@ public class PersonFrame extends JFrame {
   private JButton btnEN, btnDE, btnFR, btnADD;
 
   private JTextField txtFirstname, txtLastname, txtCity, txtCountry;
+  private JLabel lblFirstname, lblLastname, lblCity, lblCountry;
+  
+  private Locale currentLocale;
+  private ResourceBundle labels;
 
   public PersonFrame(String t) {
     super(t);
@@ -42,6 +48,51 @@ public class PersonFrame extends JFrame {
 
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setVisible(true);
+  }
+  
+  public void createGUI() {
+    getContentPane().add(getMenuPanel());
+    getContentPane().add(getInputPanel());
+    getContentPane().add(list);
+    
+    btnDE.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        setLabels("de", "CH");
+      }
+    });
+    
+    btnEN.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        setLabels("en", "US");
+      }
+    });
+    
+    btnFR.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        setLabels("fr", "CH");
+      }
+    });
+    
+    btnADD.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent arg0) {
+        PersonModel p = new PersonModel(txtFirstname.getText(),
+                                        txtLastname.getText(), 
+                                        txtCity.getText(), 
+                                        txtCountry.getText());
+        model.addElement(p);
+      }
+    });
+    
+    list.addMouseListener(new MouseAdapter() {
+      @Override
+      public void mouseClicked(MouseEvent e){
+        model.remove(list.getSelectedIndex());
+      }
+    });
   }
 
   private Component getMenuPanel() {
@@ -68,10 +119,12 @@ public class PersonFrame extends JFrame {
     txtCity = new JTextField();
     txtCountry = new JTextField();
 
-    JLabel lblFirstname = new JLabel("Firstname:");
-    JLabel lblLastname = new JLabel("Lastname:");
-    JLabel lblCity = new JLabel("City:");
-    JLabel lblCountry = new JLabel("Country:");
+    lblFirstname = new JLabel();
+    lblLastname = new JLabel();
+    lblCity = new JLabel();
+    lblCountry = new JLabel();
+    
+    setLabels("", "");
 
     btnADD = new JButton("ADD");
 
@@ -89,28 +142,15 @@ public class PersonFrame extends JFrame {
 
     return pnlInput;
   }
-
-  public void createGUI() {
-    getContentPane().add(getMenuPanel());
-    getContentPane().add(getInputPanel());
-    getContentPane().add(list);
-
-    btnADD.addActionListener(new ActionListener() {
-
-      @Override
-      public void actionPerformed(ActionEvent arg0) {
-        PersonModel p = new PersonModel(txtFirstname.getText(),
-                                        txtLastname.getText(), 
-                                        txtCity.getText(), 
-                                        txtCountry.getText());
-        model.addElement(p);
-      }
-    });
+  
+  private void setLabels(String language, String country){
+    currentLocale = new Locale(language, country);
+    labels = ResourceBundle.getBundle("Labels", currentLocale);
     
-    list.addMouseListener(new MouseAdapter() {
-      public void mouseClicked(MouseEvent e){
-        model.remove(list.getSelectedIndex());
-      }
-    });
+    lblFirstname.setText(labels.getString("firstname"));
+    lblLastname.setText(labels.getString("lastname"));
+    lblCity.setText(labels.getString("city"));
+    lblCountry.setText(labels.getString("country"));
   }
+
 }
